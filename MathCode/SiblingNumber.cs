@@ -1,45 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MathCode
 {
     public class SiblingNumber
     {
+        private const string _NOT_A_POSITIVE_NUMBER_MSG = "is not a positive integer.";
+        private const int _BIGGEST_NUMBER = 100000000;
+        private const int _NUMBER_FOR_OUTPUT_ERROR = -1;
+        private const int _DECIMAL_PLACES = 9;
+
         public int Largest(int n)
         {
             if (n <= 0)
-                throw new ArgumentException($"{n} is not a positive integer.");
+                throw new ArgumentException($"{n} {_NOT_A_POSITIVE_NUMBER_MSG}");
 
-            if (n > 100000000)
-                return -1;
+            if (n > _BIGGEST_NUMBER)
+                return _NUMBER_FOR_OUTPUT_ERROR;
 
-            var dic = new Sibling[9];
+            var dictionary = new Entry[_DECIMAL_PLACES];
             var numberSplited = n.ToString().Select(c => int.Parse(new string(c,1))).ToList();
             foreach (var partNumber in numberSplited)
             {
-                if (dic[partNumber] == null)
-                    dic[partNumber] = new Sibling {Number = partNumber.ToString()};
+                if (dictionary[partNumber] == null)
+                    dictionary[partNumber] = new Entry { Value = partNumber.ToString()};
                 else
-                    dic[partNumber].Number += partNumber;
+                    dictionary[partNumber].Value += partNumber;
             }
 
             var output = string.Empty;
-            for (var i = 8; i >= 0; i--)
+            for (var i = _DECIMAL_PLACES -1; i >= 0; i--)
             {
-                if (dic[i] != null)
-                    output += dic[i].Number;
+                if (dictionary[i] != null)
+                    output += dictionary[i].Value;
             }
 
             return int.Parse(output);
         }
-    }
-
-    public class Sibling
-    {
-        public string Number { get; set; }
     }
 }
