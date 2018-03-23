@@ -56,7 +56,15 @@ namespace UnitTest
         {
             var siblingNumber = new SiblingNumber();
             var result = siblingNumber.Largest(100000001);
-            Assert.AreEqual(-1,result);
+            Assert.AreEqual(-1, result);
+        }
+
+        [TestMethod]
+        public void CanIGetANumberEqualThanOneHundredMillion()
+        {
+            var siblingNumber = new SiblingNumber();
+            var result = siblingNumber.Largest(100000000);
+            Assert.AreEqual(100000000, result);
         }
     }
 }
