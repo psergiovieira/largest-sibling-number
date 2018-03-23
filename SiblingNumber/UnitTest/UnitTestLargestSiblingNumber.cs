@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MathCode;
 
 namespace UnitTest
 {
@@ -9,6 +9,8 @@ namespace UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            var service = new SiblingNumber();
+            var result = service.Largest(213);
         }
     }
 }
