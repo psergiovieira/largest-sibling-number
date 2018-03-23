@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -20,17 +21,23 @@ namespace MathCode
                 return _NUMBER_FOR_OUTPUT_ERROR;
 
             var dictionary = new Entry[_DECIMAL_PLACES];
-            var numberSplited = n.ToString().Select(c => int.Parse(new string(c,1))).ToList();
+            var numberSplited = n.ToString().Select(c => int.Parse(new string(c, 1))).ToList();
             foreach (var partNumber in numberSplited)
             {
                 if (dictionary[partNumber] == null)
-                    dictionary[partNumber] = new Entry { Value = partNumber.ToString()};
+                    dictionary[partNumber] = new Entry { Value = partNumber.ToString() };
                 else
                     dictionary[partNumber].Value += partNumber;
             }
+            var output = FormatOutput(dictionary);
 
+            return output;
+        }
+
+        private int FormatOutput(Entry[] dictionary)
+        {
             var output = string.Empty;
-            for (var i = _DECIMAL_PLACES -1; i >= 0; i--)
+            for (var i = _DECIMAL_PLACES - 1; i >= 0; i--)
             {
                 if (dictionary[i] != null)
                     output += dictionary[i].Value;
