@@ -11,6 +11,9 @@ namespace MathCode
     {
         public int Largest(int n)
         {
+            if (n <= 0)
+                throw new ArgumentException($"{n} is not a positive integer.");
+
             var dic = new Sibling[9];
             var numberSplited = n.ToString().Select(c => int.Parse(new string(c,1))).ToList();
             foreach (var partNumber in numberSplited)
