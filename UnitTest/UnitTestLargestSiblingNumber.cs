@@ -50,5 +50,13 @@ namespace UnitTest
             var siblingNumber = new SiblingNumber();
             var result = siblingNumber.Largest(-1);
         }
+
+        [TestMethod]
+        public void CanISendANumberBiggerThanOneHundredMillion()
+        {
+            var siblingNumber = new SiblingNumber();
+            var result = siblingNumber.Largest(100000001);
+            Assert.AreEqual(-1,result);
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace MathCode
             if (n <= 0)
                 throw new ArgumentException($"{n} is not a positive integer.");
 
+            if (n > 100000000)
+                return -1;
+
             var dic = new Sibling[9];
             var numberSplited = n.ToString().Select(c => int.Parse(new string(c,1))).ToList();
             foreach (var partNumber in numberSplited)
