@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathCode;
 
 namespace UnitTest
@@ -31,6 +32,23 @@ namespace UnitTest
             var result = service.Largest(553);
 
             Assert.AreEqual(553, result);
+        }
+
+        [TestMethod]
+        public void LargestSiblingNumberCanSatisfyBasicTestPart4()
+        {
+            var service = new SiblingNumber();
+            var result = service.Largest(123);
+
+            Assert.AreEqual(321, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CanISendNegativeNumber()
+        {
+            var service = new SiblingNumber();
+            var result = service.Largest(-1);
         }
     }
 }

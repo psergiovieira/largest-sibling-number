@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MathCode.csproj">
+    <ProjectReference Include="..\MathCode\MathCode.csproj">
       <Project>{4da6126b-12bb-4c62-9417-b761c51f0fca}</Project>
       <Name>MathCode</Name>
     </ProjectReference>

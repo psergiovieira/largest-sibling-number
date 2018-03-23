@@ -21,14 +21,14 @@ namespace MathCode
                     dic[partNumber].Number += partNumber;
             }
 
-            var result = string.Empty;
+            var output = string.Empty;
             for (var i = 8; i >= 0; i--)
             {
                 if (dic[i] != null)
-                    result += dic[i].Number;
+                    output += dic[i].Number;
             }
 
-            return int.Parse(result);
+            return int.Parse(output);
         }
     }
 
