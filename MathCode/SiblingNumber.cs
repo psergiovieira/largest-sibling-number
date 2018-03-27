@@ -10,7 +10,7 @@ namespace MathCode
         private const string _NOT_A_POSITIVE_NUMBER_MSG = "is not a positive integer.";
         private const int _BIGGEST_NUMBER = 100000000;
         private const int _NUMBER_FOR_OUTPUT_ERROR = -1;
-        private const int _DECIMAL_PLACES = 9;
+        private const int _DECIMAL_PLACES = 10;
 
         public int Largest(int number)
         {
@@ -22,7 +22,7 @@ namespace MathCode
             
             var numbers = GetDigitsFromNumber(number);
             var groupedDigits = GroupByNumberOnArray(numbers);
-            var output = GetNumberFromDigitsOrderedDesc(groupedDigits);
+            var output = GetNumberFromOrderedDescDigits(groupedDigits);
 
             return output;
         }
@@ -46,7 +46,7 @@ namespace MathCode
             return number.ToString().Select(c => int.Parse(new string(c, 1)));
         }
 
-        private int GetNumberFromDigitsOrderedDesc(IReadOnlyList<string> digits)
+        private int GetNumberFromOrderedDescDigits(IReadOnlyList<string> digits)
         {
             var output = string.Empty;
             for (var i = _DECIMAL_PLACES - 1; i >= 0; i--)
