@@ -21,8 +21,8 @@ namespace MathCode
                 return _NUMBER_FOR_OUTPUT_ERROR;
             
             var numbers = GetDigitsFromNumber(number);
-            var digits = GroupByNumberOnArray(numbers);
-            var output = GetNumberFromDigitsOrderedDesc(digits);
+            var groupedDigits = GroupByNumberOnArray(numbers);
+            var output = GetNumberFromDigitsOrderedDesc(groupedDigits);
 
             return output;
         }
