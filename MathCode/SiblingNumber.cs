@@ -12,35 +12,47 @@ namespace MathCode
         private const int _NUMBER_FOR_OUTPUT_ERROR = -1;
         private const int _DECIMAL_PLACES = 9;
 
-        public int Largest(int n)
+        public int Largest(int number)
         {
-            if (n <= 0)
-                throw new ArgumentException($"{n} {_NOT_A_POSITIVE_NUMBER_MSG}");
+            if (number <= 0)
+                throw new ArgumentException($"{number} {_NOT_A_POSITIVE_NUMBER_MSG}");
 
-            if (n > _BIGGEST_NUMBER)
+            if (number > _BIGGEST_NUMBER)
                 return _NUMBER_FOR_OUTPUT_ERROR;
-
-            var dictionary = new Entry[_DECIMAL_PLACES];
-            var numberSplited = n.ToString().Select(c => int.Parse(new string(c, 1))).ToList();
-            foreach (var partNumber in numberSplited)
-            {
-                if (dictionary[partNumber] == null)
-                    dictionary[partNumber] = new Entry { Value = partNumber.ToString() };
-                else
-                    dictionary[partNumber].Value += partNumber;
-            }
-            var output = FormatOutput(dictionary);
+            
+            var numbers = GetDigitsFromNumber(number);
+            var digits = GroupByNumberOnArray(numbers);
+            var output = GetNumberFromDigitsOrderedDesc(digits);
 
             return output;
         }
 
-        private int FormatOutput(Entry[] dictionary)
+        private string[] GroupByNumberOnArray(IEnumerable<int> numbers)
+        {
+            var digits = new string[_DECIMAL_PLACES];
+            foreach (var number in numbers)
+            {
+                if (digits[number] == null)
+                    digits[number] = number.ToString();
+                else
+                    digits[number] += number;
+            }
+
+            return digits;
+        }
+
+        private IEnumerable<int> GetDigitsFromNumber(int number)
+        {
+            return number.ToString().Select(c => int.Parse(new string(c, 1)));
+        }
+
+        private int GetNumberFromDigitsOrderedDesc(IReadOnlyList<string> digits)
         {
             var output = string.Empty;
             for (var i = _DECIMAL_PLACES - 1; i >= 0; i--)
             {
-                if (dictionary[i] != null)
-                    output += dictionary[i].Value;
+                if (digits[i] != null)
+                    output += digits[i];
             }
 
             return int.Parse(output);
